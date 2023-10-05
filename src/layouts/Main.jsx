@@ -6,6 +6,7 @@ const Main = () => {
   return (
   <>
     <Navbar />
+  {/* Adding banner here */}
       <div className="pt-24 min-h-[calc(100vh-151.750px)]">
         <Outlet />
       </div>
