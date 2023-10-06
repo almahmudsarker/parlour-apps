@@ -14,7 +14,7 @@ const HeadBanner = () => {
                 <div className="flex flex-col gap-4 p-24">
                     <h1 className="text-5xl font-bold text-left text-[#111430]">BEAUTY SALON</h1>
                     <h1 className="text-5xl font-bold text-left text-[#111430]">FOR EVERY <span className='text-[#F63E7B]'>WOMEN</span></h1>
-                    <p className="text-left text-[#666666] w-[350px] h-[83]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat</p>
+                    <p className="text-left text-[#666666] w-[350px] h-[83px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat</p>
                     <button className="bg-[#F63E7B] text-white px-10 py-2 rounded-md w-[229px] h-[50]">Get an Appointment</button>
                 </div>
                 </div>
