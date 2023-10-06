@@ -29,8 +29,7 @@ const ServiceCard = () => {
     {
         id: 4,
         img: "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-2.png?raw=true",
-      name: "Hair Color & Styleing",
-        name: "Anti Age Face Treatment",
+        name: "Hair Color & Styleing",
         price: 423,
         description: "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
     },
@@ -44,7 +43,7 @@ const ServiceCard = () => {
     {
         id: 6,
         img: "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-1.png?raw=true",
-        name: "Anti Age Face Treatment",
+        name: "Skin Care Treatment",
         price: 139,
         description: "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
     },
