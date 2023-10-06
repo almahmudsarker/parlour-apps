@@ -4,7 +4,7 @@ import Container from '../shared/Container';
 const HeadBanner = () => {
     return (
         <Container>
-            <div className="flex flex-row pt-10 gap-5">
+            <div className="flex flex-row gap-5">
               <div data-aos="fade-up"
                 data-aos-offset="200"
                 data-aos-delay="50"
@@ -24,7 +24,7 @@ const HeadBanner = () => {
                 data-aos-duration="1500"
                 data-aos-easing="ease-in-out"
                 data-aos-once="false">
-                <img src="../../../public/beautiful-young-asian-woman-touching-her-clean-face-with-fresh-healthy-skin-isolated-white-wall-beauty-cosmetics-facial-treatment-concept 1.png" alt="banner" className="w-[484px] h-[478px] rounded-xl" /> 
+                <img src="https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Image/header.png?raw=true" alt="banner" className="w-[484px] h-[478px] rounded-xl" /> 
                 </div>
             </div>
         </Container>

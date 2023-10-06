@@ -1,7 +1,7 @@
 import Img from '../../../assets/images/logo.png'
 const Footer = () => {
   return (
-    <footer className="footer text-center pb-12 bg-transparent text-gray-500">
+    <footer className="footer text-center py-12 bg-transparent text-gray-500">
       <div>
         <img
           className='mx-auto mb-1'
