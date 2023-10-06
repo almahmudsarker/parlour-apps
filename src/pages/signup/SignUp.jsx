@@ -4,8 +4,11 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { FaFacebook } from "react-icons/fa";
 // import { useRef } from "react";
 import { saveUser } from "../../api/auth";
+import Navbar from "../../components/shared/navbar/Navbar";
+import Footer from "../../components/shared/Footer/Footer";
 
 const SignUp = () => {
     const { loading, setLoading, signInWithGoogle, createUser, updateUserProfile } =
@@ -75,12 +78,14 @@ const handleSubmit = (event) => {
 }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+    <>
+    <Navbar />
+    <div className="flex justify-center items-center min-h-screen p-10">
+      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to Through Travels</p>
-        </div>
+        <img src="https://github.com/almahmudsarker/jerins-parlour/blob/main/src/assets/images/logo.png?raw=true" className="mx-24 mb-4" />
+          <h1 className="text-xl font-medium text-gray-400">Create an account</h1>
+          </div>
         <form
           onSubmit={handleSubmit}
           noValidate=""
@@ -97,7 +102,7 @@ const handleSubmit = (event) => {
                 name="name"
                 id="name"
                 placeholder="Enter Your Name Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-sky-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#F63E7B] bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -123,7 +128,7 @@ const handleSubmit = (event) => {
                 id="email"
                 required
                 placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-sky-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#F63E7B] bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -139,7 +144,7 @@ const handleSubmit = (event) => {
                 id="password"
                 required
                 placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-sky-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#F63E7B] bg-gray-200 text-gray-900"
               />
             </div>
           </div>
@@ -147,7 +152,7 @@ const handleSubmit = (event) => {
           <div>
             <button
               type="submit"
-              className="bg-sky-500 w-full rounded-md py-3 text-white"
+              className="bg-[#F63E7B] w-full rounded-md py-3 text-white"
             >
               {loading ? (
                 <TbFidgetSpinner className="m-auto animate-spin" size={24} />
@@ -166,17 +171,23 @@ const handleSubmit = (event) => {
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="flex justify-center items-center border m-3 py-2 border-gray-300 rounded-full cursor-pointer"
         >
           <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
+          <p className="ml-10 mr-16">Continue with Google</p>
+        </div>
+        <div
+          // onClick={}
+          className="flex justify-center items-center border m-3 py-2 border-gray-300 rounded-full cursor-pointer"
+        >
+          <FaFacebook size={32} />
+          <p className="ml-9 mr-12">Continue with Facebook</p>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="hover:underline hover:text-sky-500 text-gray-600"
+            className="hover:underline hover:text-rose-500 text-[#F63E7B]"
           >
             Login
           </Link>
@@ -184,6 +195,8 @@ const handleSubmit = (event) => {
         </p>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

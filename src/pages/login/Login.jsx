@@ -6,6 +6,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 import {TbFidgetSpinner} from 'react-icons/tb'
 import { useRef } from "react";
 import { saveUser } from "../../api/auth";
+import {FaFacebook} from 'react-icons/fa'
+import Footer from "../../components/shared/Footer/Footer";
+import Navbar from "../../components/shared/navbar/Navbar";
 
 const Login = () => {
     const {signIn, loading, setLoading, signInWithGoogle, resetPassword} = useContext(AuthContext)
@@ -52,13 +55,13 @@ const Login = () => {
         })
     }
   return (
+    <>
+    <Navbar />
     <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-1 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm text-gray-400">
-            Sign in to access your account
-          </p>
+        <img src="https://github.com/almahmudsarker/jerins-parlour/blob/main/src/assets/images/logo.png?raw=true" className="mx-24" />
+          <h1 className="text-lg font-medium pt-2 text-gray-400">Login With</h1>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -78,7 +81,7 @@ const Login = () => {
                 id="email"
                 required
                 placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-sky-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#F63E7B] bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -94,7 +97,7 @@ const Login = () => {
                 id="password"
                 required
                 placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-sky-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#F63E7B] bg-gray-200 text-gray-900"
               />
             </div>
           </div>
@@ -102,7 +105,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="bg-sky-500 w-full rounded-md py-3 text-white"
+              className="bg-[#F63E7B] w-full rounded-md py-3 text-white"
             >
               {loading ? (
                 <TbFidgetSpinner className="m-auto animate-spin" size={24} />
@@ -126,24 +129,31 @@ const Login = () => {
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="flex justify-center items-center border m-3 py-2 border-gray-300 rounded-full cursor-pointer"
         >
           <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
+          <p className="ml-10 mr-20">Continue with Google</p>
+        </div>
+        <div
+          // onClick={}
+          className="flex justify-center items-center border m-3 py-2 border-gray-300 rounded-full cursor-pointer"
+        >
+          <FaFacebook size={32} />
+          <p className="ml-9 mr-16">Continue with Facebook</p>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Don't have an account yet?{" "}
           <Link
             to="/signup"
-            className="hover:underline hover:text-sky-500 text-gray-600"
+            className="hover:underline hover:text-rose-400 text-[#F63E7B]"
           >
-            Sign up
+            Create new for free!
           </Link>
-          .
         </p>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 
