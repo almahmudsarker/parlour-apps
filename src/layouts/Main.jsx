@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/shared/navbar/Navbar"
 import Footer from "../components/shared/Footer/Footer"
+import HeadBanner from "../components/banner/HeadBanner"
 
 const Main = () => {
   return (
   <>
     <Navbar />
-  {/* Adding banner here */}
       <div className="pt-24 min-h-[calc(100vh-151.750px)]">
         <Outlet />
       </div>
