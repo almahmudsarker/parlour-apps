@@ -2,7 +2,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MenuDropdown = () => {
   const { user, logOut, role, setRole } = useContext(AuthContext);
@@ -11,7 +11,7 @@ const MenuDropdown = () => {
 
   const closeModal = () => {
     setModal(false);
-  }
+  };
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -62,7 +62,7 @@ const MenuDropdown = () => {
                 </Link>
                 <div
                   onClick={() => {
-                    setRole(null);
+                    // setRole(null);
                     logOut();
                   }}
                   className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"

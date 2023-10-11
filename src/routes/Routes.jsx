@@ -14,6 +14,8 @@ import Order from '../pages/Admin/Order'
 import AddService from '../pages/Admin/AddService'
 import MakeAdmin from '../pages/Admin/MakeAdmin'
 import ManageService from '../pages/Admin/ManageService'
+import ServiceDetails from '../pages/ServiceDetails/ServiceDetails'
+import { getService } from '../api/services'
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,15 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/service/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => getService(params.id),
       },
     ],
   },

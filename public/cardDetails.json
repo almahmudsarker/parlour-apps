@@ -1,0 +1,44 @@
+[
+    {
+      "_id": 1,
+      "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-1.png?raw=true",
+      "name": "Anti Age Face Treatment",
+      "price": 199,
+      "description": "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
+    },
+    {
+      "_id": 2,
+      "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-2.png?raw=true",
+      "name": "Hair Color & Styling",
+      "price": 99,
+      "description": "Amazing flyers, social media posts and brand representations that would make your brand stand out."
+    },
+    {
+      "_id": 3,
+      "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-3.png?raw=true",
+      "name": "Skin Care Treatment",
+      "price": 299,
+      "description": "With well written codes, we build amazing apps for all platforms, mobile and web apps in general."
+    },
+    {
+        "_id": 4,
+        "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-2.png?raw=true",
+        "name": "Hair Color & Styling",
+        "price": 423,
+        "description": "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
+    },
+    {
+        "_id": 5,
+        "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-3.png?raw=true",
+        "name": "Anti Age Face Treatment",
+        "price": 179,
+        "description": "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
+    },
+    {
+        "_id": 6,
+        "img": "https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/img-1.png?raw=true",
+        "name": "Skin Care Treatment",
+        "price": 139,
+        "description": "We craft stunning and amazing web UI, using a well drafted UX to fit your product"
+    }
+  ]
