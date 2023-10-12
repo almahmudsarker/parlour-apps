@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getService } from "../../api/services";
 
 const ServiceDetails = () => {
   const { id } = useParams();
-  const [service, setService] = useState({});
-  const { _id, name, price, description, img } = service;
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { _id, name, price, description, img } = services;
   const [infoImage, setInfoImage] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const url = `http://localhost:4000/services/${id}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setService(data));
-  }, [id]);
+  // useEffect(() => {
+  //   const url = `http://localhost:4000/services/${id}`;
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => setService(data));
+  // }, [id]);
 
+  useEffect(() => {
+    setLoading(true);
+    getService()
+      .then((data) => {
+        setServices(data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
   return (
     <div>
       <div className="bg-secondary font-poppins h-screen px-5 md:px-10 ">
@@ -29,7 +41,7 @@ const ServiceDetails = () => {
             <p className="text-primary text-xl font-bold">${price}</p>
             <button
               onClick={() => navigate(`/dashboard/payment/${_id}`)}
-              className="px-5 font-semibold rounded py-2  bg-primary text-white"
+              className="px-5 font-semibold rounded py-2  bg-[#F63E7B] text-white"
             >
               Booking Confrim
             </button>
