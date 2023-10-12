@@ -1,25 +1,25 @@
-import { createBrowserRouter } from 'react-router-dom'
-import Main from '../layouts/Main'
-import Home from '../pages/home/Home'
-import Login from '../pages/Login/Login'
-import SignUp from '../pages/Signup/SignUp'
-import ErrorPage from '../error-page'
-import PrivateRoute from './PrivateRoute'
-import DashboardLayout from '../layouts/DashboardLayout'
-import Profile from '../pages/dashboard/Profile'
-import Review from '../pages/dashboard/Review'
-import MyBooking from '../pages/dashboard/MyBooking'
-import Book from '../pages/dashboard/Book'
-import Order from '../pages/Admin/Order'
-import AddService from '../pages/Admin/AddService'
-import MakeAdmin from '../pages/Admin/MakeAdmin'
-import ManageService from '../pages/Admin/ManageService'
-import ServiceDetails from '../pages/ServiceDetails/ServiceDetails'
-import { getService } from '../api/services'
+import { createBrowserRouter } from "react-router-dom";
+import Main from "../layouts/Main";
+import Home from "../pages/home/Home";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/Signup/SignUp";
+import ErrorPage from "../error-page";
+import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Profile from "../pages/dashboard/Profile";
+import Review from "../pages/dashboard/Review";
+import MyBooking from "../pages/dashboard/MyBooking";
+import Book from "../pages/dashboard/Book";
+import Order from "../pages/Admin/Order";
+import AddService from "../pages/Admin/AddService";
+import MakeAdmin from "../pages/Admin/MakeAdmin";
+import ManageService from "../pages/Admin/ManageService";
+import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
+import { getService } from "../api/services";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main />,
     errorElement: <ErrorPage />,
     children: [
@@ -34,7 +34,6 @@ export const router = createBrowserRouter([
             <ServiceDetails />
           </PrivateRoute>
         ),
-        loader: ({ params }) => getService(params.id),
       },
     ],
   },
@@ -48,10 +47,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: 
-    (<PrivateRoute>
-      <DashboardLayout />
-    </PrivateRoute>),
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/profile",
@@ -71,20 +71,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/order-list",
-        element: <Order />
+        element: <Order />,
       },
       {
         path: "/dashboard/add-service",
-        element: <AddService />
+        element: <AddService />,
       },
       {
         path: "/dashboard/make-admin",
-        element: <MakeAdmin />
+        element: <MakeAdmin />,
       },
       {
         path: "/dashboard/manage-service",
-        element: <ManageService />
+        element: <ManageService />,
       },
     ],
   },
-])
+]);
