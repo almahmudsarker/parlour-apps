@@ -25,12 +25,15 @@ const MyBooking = () => {
               </h2>
               <p className="text-sm text-gray-600">{item.description}</p>
               <div className="mt-4 flex justify-between items-center">
-                <p className="text-xl font-bold text-[#F63E7B]">
+                <p className="text-xl font-light text-[#ee004fc7]">
+                  <span className="text-lg font-semibold text-[#f63e7bc7]">
+                    PAID -
+                  </span>{" "}
                   ${item.price}
                 </p>
-                <span className="bg-[#F63E7B] text-white px-2 py-1 text-sm rounded-md">
-                  {item.quantity}x
-                </span>
+                <button className="px-4 py-2 bg-[#c95179] text-white text-sm font-medium rounded-md">
+                  Pending...
+                </button>
               </div>
             </div>
           </div>

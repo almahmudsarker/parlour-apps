@@ -9,7 +9,7 @@ const Book = () => {
   const { id } = useParams();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { name, price } = services;
+  const { name, price, img, description } = services;
   const { user } = useContext(AuthContext);
   const [booked, refetch] = useBooked();
 
@@ -31,7 +31,14 @@ const Book = () => {
   const handleAddToBook = (item) => {
     console.log("Item:", item);
     if (user && user.email) {
-      const bookItem = { bookedItemId: id, name, price, email: user.email };
+      const bookItem = {
+        bookedItemId: id,
+        name,
+        price,
+        img,
+        description,
+        email: user.email,
+      };
       fetch(`${import.meta.env.VITE_API_URL}/booked`, {
         method: "POST",
         headers: {
