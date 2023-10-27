@@ -31,7 +31,7 @@ const ServiceDetails = () => {
             <p className="text-center">{description}</p>
             <p className="text-primary text-xl font-bold">${price}</p>
             <button
-              onClick={() => navigate(`/dashboard/payment`)}
+              onClick={() => navigate(`/dashboard/payment/${id}`)}
               className="px-5 font-semibold rounded py-2  bg-[#F63E7B] text-white"
             >
               Booking Confrim
