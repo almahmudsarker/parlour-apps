@@ -15,7 +15,6 @@ import AddService from "../pages/Admin/AddService";
 import MakeAdmin from "../pages/Admin/MakeAdmin";
 import ManageService from "../pages/Admin/ManageService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
-import { getService } from "../api/services";
 
 export const router = createBrowserRouter([
   {

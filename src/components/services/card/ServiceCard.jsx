@@ -41,7 +41,7 @@ const ServiceCard = () => {
     <Container>
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
         {filteredServices.map((service) => (
-          <Card key={service.id} service={service} />
+          <Card key={service._id} service={service} />
         ))}
       </div>
       <button

@@ -13,30 +13,18 @@
 
 // Get all services
 export const getAllService = async () => {
-  const response = await fetch(`/cardDetails.json`);
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/services`);
   const data = await response.json();
   return data;
 };
 
-// Get filtered places for hosts
-// export const getPlaces = async email => {
-//     const response = await fetch(`${import.meta.env.VITE_API_URL}/places/${email}`,
-//     {
-//         headers: {
-//             authorization: `Bearer ${localStorage.getItem('access-token')}`,
-//         },
-//     }
-//     )
-//     const data = await response.json()
-//     return data
-// }
-
 // Get a single service by ID
 export const getService = async (id) => {
-  const response = await fetch(`/cardDetails.json`);
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/services/${id}`
+  );
   const data = await response.json();
-  const service = data.find((item) => item.id === id);
-  return service;
+  return data; // Return the data object directly
 };
 
 //delete a Place
@@ -50,17 +38,3 @@ export const getService = async (id) => {
 //   const data = await response.json();
 //   return data;
 // };
-
-// update Place
-// export const updatePlace= async (placeData, id) => {
-//     const response = await fetch(`${import.meta.env.VITE_API_URL}/places/${id}`, {
-//         method: 'PUT',
-//         headers: {
-//             'content-type': 'application/json',
-//             authorization: `Bearer ${localStorage.getItem('access-token')}`,
-//         },
-//         body: JSON.stringify(placeData),
-//     })
-//     const data = await response.json()
-//     return data
-// }
