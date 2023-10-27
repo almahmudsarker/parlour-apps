@@ -1,4 +1,4 @@
-//Add a place
+//Add a Services
 // export const addPlace = async placeData => {
 //     const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
 //         method: "POST",
@@ -27,7 +27,7 @@ export const getService = async (id) => {
   return data; // Return the data object directly
 };
 
-//delete a Place
+//delete a Service
 // export const deletePlace = async (id) => {
 //   const response = await fetch(`${import.meta.env.VITE_API_URL}/places/${id}`, {
 //     method: "DELETE",

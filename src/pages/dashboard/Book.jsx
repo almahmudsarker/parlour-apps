@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getService } from "../../api/services";
 import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
+import useBooked from "../../hooks/useBooked";
 
 const Book = () => {
   const { id } = useParams();
@@ -9,6 +11,9 @@ const Book = () => {
   const [loading, setLoading] = useState(false);
   const { name, price } = services;
   const { user } = useContext(AuthContext);
+  const [booked, refetch] = useBooked();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -22,6 +27,28 @@ const Book = () => {
         setLoading(false);
       });
   }, [id]);
+
+  const handleAddToBook = (item) => {
+    console.log("Item:", item);
+    if (user && user.email) {
+      const bookItem = { bookedItemId: id, name, price, email: user.email };
+      fetch(`${import.meta.env.VITE_API_URL}/booked`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            refetch();
+            toast.success("Booked Successfully");
+            navigate("/dashboard/my-booking");
+          }
+        });
+    }
+  };
   return (
     <div>
       <h1 className="text-2xl font-medium text-[#0C0C0C] bg-white p-5">
@@ -88,7 +115,10 @@ const Book = () => {
           <span className="text-gray-400 text-sm m-4">
             Your Service Charge will be ${price}
           </span>
-          <button className="bg-[#f86e9c] hover:bg-[#F63E7B] text-white p-2 rounded-md m-4">
+          <button
+            onClick={handleAddToBook}
+            className="bg-[#f86e9c] hover:bg-[#F63E7B] text-white p-2 rounded-md m-4"
+          >
             Pay Now
           </button>
         </div>

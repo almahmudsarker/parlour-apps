@@ -1,4 +1,4 @@
-// // save a user to database
+// save a user to database
 export const saveUser = (user) => {
   const currentUser = {
     email: user.email,
