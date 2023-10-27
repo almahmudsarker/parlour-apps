@@ -1,26 +1,26 @@
 import React, { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Logo from "../shared/navbar/Logo";
 import { IoIosLogOut } from "react-icons/io";
-import {TbUserHeart} from "react-icons/tb";
+import { TbUserHeart } from "react-icons/tb";
 import { TbShoppingCartHeart } from "react-icons/tb";
-import {GoCodeReview} from "react-icons/go";
+import { GoCodeReview } from "react-icons/go";
 import { BsClipboard2Data } from "react-icons/bs";
 import { GrChapterAdd, GrServices } from "react-icons/gr";
-import {GrUserAdmin} from "react-icons/gr";
+import { GrUserAdmin } from "react-icons/gr";
 
 import { AiOutlineBars } from "react-icons/ai";
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { logOut, role} = useContext(AuthContext);
+  const { logOut, role } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
-  
+
   const handleLogOut = () => {
     logOut();
     navigate("/");
@@ -56,87 +56,97 @@ const Sidebar = () => {
             </div>
 
             <div className="flex flex-col py-2 mt-14">
-            <NavLink
-            to="/dashboard/payment"
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }
-          >
-            <TbShoppingCartHeart className="w-5 h-5 mr-4" />
+              <NavLink
+                to="/dashboard/payment"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                    isActive ? "text-[#F63E7B]" : "text-gray-600"
+                  }`
+                }
+              >
+                <TbShoppingCartHeart className="w-5 h-5 mr-4" />
+                <Link to="/">
+                  <span className="font-medium">Book</span>
+                </Link>
+              </NavLink>
+              <NavLink
+                to="/dashboard/my-booking"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                    isActive ? "text-[#F63E7B]" : "text-gray-600"
+                  }`
+                }
+              >
+                <BsClipboard2Data className="w-5 h-5 mr-4" />
 
-            <span className="font-medium">Book</span>
-          </NavLink>       
-          <NavLink
-            to="/dashboard/my-booking"
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }
-          >
-            <BsClipboard2Data className="w-5 h-5 mr-4" />
+                <span className="font-medium">Booking list</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/review"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                    isActive ? "text-[#F63E7B]" : "text-gray-600"
+                  }`
+                }
+              >
+                <GoCodeReview className="w-5 h-5 mr-4" />
 
-            <span className="font-medium">Booking list</span>
-          </NavLink>  
-          <NavLink
-            to="/dashboard/review"
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }
-          >
-            <GoCodeReview className="w-5 h-5 mr-4" />
-
-            <span className="font-medium">Review</span>
-          </NavLink>  
+                <span className="font-medium">Review</span>
+              </NavLink>
             </div>
 
             {/* Set Admin Route */}
 
-            {role === "admin" && (  
-            <div className="flex flex-col py-2 mt-14">
-            <NavLink  to={`/dashboard/order-list`} className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }>  
-            <BsClipboard2Data className="w-5 h-5 mr-4" />
-            <span className="font-medium">Order List</span>
-          </NavLink>  
-          <NavLink  to={`/dashboard/add-service`} className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }>
-              <GrChapterAdd className="w-5 h-5 mr-4" />
-            <span className="font-medium">Add Service</span>
-          </NavLink>
-          <NavLink  to={`/dashboard/make-admin`} className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }>
-          <GrUserAdmin className="w-5 h-5 mr-4" />
-            <span className="font-medium">Make Admin</span>
-          </NavLink>
-          <NavLink  to={`/dashboard/manage-service`} className={({ isActive }) =>
-              `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
-                isActive ? "text-[#F63E7B]" : "text-gray-600"
-              }`
-            }>
-              <GrServices className="w-5 h-5 mr-4" />
-            <span className="font-medium">Manage Service</span>
-          </NavLink>
-            </div>
-            )
-              
-            }
+            {role === "admin" && (
+              <div className="flex flex-col py-2 mt-14">
+                <NavLink
+                  to={`/dashboard/order-list`}
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                      isActive ? "text-[#F63E7B]" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <BsClipboard2Data className="w-5 h-5 mr-4" />
+                  <span className="font-medium">Order List</span>
+                </NavLink>
+                <NavLink
+                  to={`/dashboard/add-service`}
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                      isActive ? "text-[#F63E7B]" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <GrChapterAdd className="w-5 h-5 mr-4" />
+                  <span className="font-medium">Add Service</span>
+                </NavLink>
+                <NavLink
+                  to={`/dashboard/make-admin`}
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                      isActive ? "text-[#F63E7B]" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <GrUserAdmin className="w-5 h-5 mr-4" />
+                  <span className="font-medium">Make Admin</span>
+                </NavLink>
+                <NavLink
+                  to={`/dashboard/manage-service`}
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                      isActive ? "text-[#F63E7B]" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <GrServices className="w-5 h-5 mr-4" />
+                  <span className="font-medium">Manage Service</span>
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
-                 
 
         <div>
           <hr />
