@@ -59,6 +59,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Login Success");
         navigate(from, { replace: true });
       })
       .catch((err) => {

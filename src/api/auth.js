@@ -2,6 +2,8 @@
 export const saveUser = (user) => {
   const currentUser = {
     email: user.email,
+    name: user.displayName,
+    img: user.photoURL,
   };
   fetch(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
     method: "PUT",
@@ -31,8 +33,10 @@ export const saveUser = (user) => {
 // };
 
 // // Get role of user
-// export const getRole = async email => {
-//   const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`)
-//   const user = await response.json()
-//   return user?.role
-// };
+export const getRole = async (email) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/${email}`
+  );
+  const user = await response.json();
+  return user?.role;
+};
