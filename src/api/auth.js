@@ -4,6 +4,7 @@ export const saveUser = (user) => {
     email: user.email,
     name: user.displayName,
     img: user.photoURL,
+    role: "user",
   };
   fetch(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
     method: "PUT",
@@ -16,23 +17,22 @@ export const saveUser = (user) => {
     .then((data) => console.log(data));
 };
 
-// // become a host
-// export const becomeHost = (email) => {
+// make a user a admin
+// export const becomeAdmin = (email) => {
 //   const currentUser = {
-//     role: "host",
+//     role: "admin",
 //   };
 
-//  return fetch(`${import.meta.env.VITE_API_URL}/users/${email}`, {
+//   return fetch(`${import.meta.env.VITE_API_URL}/users/${email}`, {
 //     method: "PUT",
 //     headers: {
 //       "content-type": "application/json",
 //     },
 //     body: JSON.stringify(currentUser),
-//   })
-//     .then((res) => res.json())
+//   }).then((res) => res.json());
 // };
 
-// // Get role of user
+// Get role of user
 export const getRole = async (email) => {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/users/${email}`
