@@ -17,21 +17,6 @@ export const saveUser = (user) => {
     .then((data) => console.log(data));
 };
 
-// make a user a admin
-// export const becomeAdmin = (email) => {
-//   const currentUser = {
-//     role: "admin",
-//   };
-
-//   return fetch(`${import.meta.env.VITE_API_URL}/users/${email}`, {
-//     method: "PUT",
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//     body: JSON.stringify(currentUser),
-//   }).then((res) => res.json());
-// };
-
 // Get role of user
 export const getRole = async (email) => {
   const response = await fetch(
@@ -39,4 +24,34 @@ export const getRole = async (email) => {
   );
   const user = await response.json();
   return user?.role;
+};
+
+// Make a user an admin
+export const makeUserAdmin = async (email) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/admin/${email}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+  return data;
+};
+
+// Remove admin role from a user
+export const removeAdminRole = async (email) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/remove-admin/${email}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+  return data;
 };
