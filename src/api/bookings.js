@@ -40,6 +40,13 @@
 //     return bookings
 // }
 
+// get all order list at admin page
+export const getOrderList = async () => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/orders`);
+  const orders = await response.json();
+  return orders;
+};
+
 // //delete a booking
 // export const deleteBooking = async (id) => {
 //     const response = await fetch(`${import.meta.env.VITE_API_URL}/bookings/${id}`, {

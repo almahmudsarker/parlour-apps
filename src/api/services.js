@@ -1,15 +1,15 @@
-//Add a Services
-// export const addPlace = async placeData => {
-//     const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
-//         method: "POST",
-//         headers: {
-//             "content-type": "application/json",
-//         },
-//         body: JSON.stringify(placeData),
-//     })
-//     const data = await response.json()
-//     return data
-// }
+// Add a Service
+export const addService = async (serviceData) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/services`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(serviceData),
+  });
+  const data = await response.json();
+  return data;
+};
 
 // Get all services
 export const getAllService = async () => {
