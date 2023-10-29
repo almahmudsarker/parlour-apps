@@ -1,7 +1,12 @@
 import React from "react";
 import Container from "../shared/Container";
+import toast from "react-hot-toast";
 
 const HeadBanner = () => {
+  const appoinment = () => {
+    toast.success("Explore Services & Booked right now!");
+  };
+
   return (
     <Container>
       <section className="items-center justify-center flex">
@@ -25,7 +30,10 @@ const HeadBanner = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
                 commodo ipsum duis laoreet maecenas. Feugiat
               </p>
-              <button className="bg-[#F63E7B] text-white px-10 py-2 rounded-md w-[229px] h-[50]">
+              <button
+                onClick={appoinment}
+                className="bg-[#F63E7B] hover:bg-[#ff5289] text-white px-10 py-2 rounded-md w-[229px] h-[50]"
+              >
                 Get an Appointment
               </button>
             </div>

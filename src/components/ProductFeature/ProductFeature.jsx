@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai"; // You can choose a different icon if desired
 import "aos/dist/aos.css";
+import toast from "react-hot-toast";
 
 const ProductFeature = () => {
   const products = [
@@ -120,6 +121,7 @@ const ProductFeature = () => {
                     className="px-3 py-1 text-sm text-white bg-[#F63E7B] rounded-md"
                     onClick={() => {
                       // Handle adding the product to the cart
+                      toast.success("Product sell not available right now!");
                     }}
                   >
                     Add to Cart

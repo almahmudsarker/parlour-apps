@@ -27,14 +27,30 @@ export const getService = async (id) => {
   return data; // Return the data object directly
 };
 
-//delete a Service
-// export const deletePlace = async (id) => {
-//   const response = await fetch(`${import.meta.env.VITE_API_URL}/places/${id}`, {
-//     method: "DELETE",
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//   });
-//   const data = await response.json();
-//   return data;
-// };
+// Edit a Service
+export const editService = async (id, updatedServiceData) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/services/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedServiceData),
+    }
+  );
+  const data = await response.json();
+  return data;
+};
+
+// Delete a Service
+export const deleteService = async (id) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/services/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+  const data = await response.json();
+  return data;
+};

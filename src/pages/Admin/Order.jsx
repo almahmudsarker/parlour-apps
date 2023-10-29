@@ -26,14 +26,14 @@ const Order = () => {
 
       <div className="p-20">
         <table className="w-full table-auto">
-          <thead className="bg-gray-50">
+          <thead className="bg-[#f86e9c] text-white">
             <tr>
-              <th className="border px-4 py-2">ID</th>
+              <th className="border px-4 py-2">Service ID</th>
               <th className="border px-4 py-2">Email ID</th>
-              <th className="border px-4 py-2">Service</th>
-              <th className="border px-4 py-2">Price</th>
+              <th className="border px-4 py-2">Service Name</th>
+              <th className="border px-4 py-2">PAID</th>
+              <th className="border px-4 py-2">Booking ID</th>
               <th className="border px-4 py-2">Status</th>
-              <th className="border px-4 py-2">Customer</th>
             </tr>
           </thead>
           <tbody>
@@ -43,8 +43,8 @@ const Order = () => {
                 <td className="border px-4 py-2">{order.email}</td>
                 <td className="border px-4 py-2">{order.name}</td>
                 <td className="border px-4 py-2">$ {order.price}</td>
-                <td className="border px-4 py-2">{order.status}</td>
                 <td className="border px-4 py-2">{order._id}</td>
+                <td className="border px-4 py-2">{order.status}</td>
               </tr>
             ))}
           </tbody>

@@ -20,10 +20,9 @@ const AddService = () => {
 
   const handleAddService = async () => {
     try {
-      const response = await addService(newService); // Call the addService function
+      const response = await addService(newService);
       if (response) {
         toast.success("Service added successfully");
-        // Reset the form or perform other actions
         setNewService({
           img: "",
           name: "",
@@ -31,7 +30,6 @@ const AddService = () => {
           price: 0,
         });
       } else {
-        // Failed to add service
         toast.error("Failed to add service");
         console.error("Failed to add service");
       }
@@ -42,62 +40,65 @@ const AddService = () => {
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-2xl font-medium text-[#0C0C0C] bg-white p-5">
-        Add Services
+        Add Service Here
       </h1>
-      <div className="p-20">
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-[#0C0C0C]">
-            Service Image
-          </label>
-          <input
-            type="text"
-            name="img"
-            value={newService.img}
-            onChange={handleInputChange}
-            className="border border-[#ff8cb2] rounded-md px-2 py-1 w-1/2"
-          />
+      <div className="p-5">
+        <div className="p-5 bg-white rounded-lg shadow-xl">
+          <div className="mb-4">
+            <h1 className="text-xl font-medium text-[#0C0C0C] py-2">Image</h1>
+            <input
+              type="text"
+              name="img"
+              placeholder="Enter image URL"
+              value={newService.img}
+              onChange={handleInputChange}
+              className="border border-[#ff8cb2] rounded-md px-2 py-2 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <h1 className="text-xl font-medium text-[#0C0C0C] py-2">Name</h1>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter service name"
+              value={newService.name}
+              onChange={handleInputChange}
+              className="border border-[#ff8cb2] rounded-md px-2 py-2 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <h1 className="text-xl font-medium text-[#0C0C0C] py-2">
+              Description
+            </h1>
+            <textarea
+              name="description"
+              placeholder="Enter service details here"
+              value={newService.description}
+              onChange={handleInputChange}
+              className="border border-[#ff8cb2] rounded-md px-2 py-2 w-full h-32"
+            />
+          </div>
+          <div className="mb-4">
+            <h1 className="text-xl font-medium text-[#0C0C0C] py-2">Price</h1>
+            <input
+              type="number"
+              name="price"
+              value={newService.price}
+              onChange={handleInputChange}
+              className="border border-[#ff8cb2] rounded-md px-2 py-1 w-full"
+            />
+          </div>
+          <button
+            onClick={handleAddService}
+            className="bg-[#ff578f] text-white px-4 py-2 rounded-md mt-5"
+          >
+            Add Service
+          </button>
         </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-[#0C0C0C]">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={newService.name}
-            onChange={handleInputChange}
-            className="border border-[#ff8cb2] rounded-md px-2 py-1 w-1/2"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-[#0C0C0C]">
-            Description
-          </label>
-          <textarea
-            name="description"
-            value={newService.description}
-            onChange={handleInputChange}
-            className="border border-[#ff8cb2] rounded-md px-2 py-1 w-1/2"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-[#0C0C0C]">Price</label>
-          <input
-            type="number"
-            name="price"
-            value={newService.price}
-            onChange={handleInputChange}
-            className="border border-[#ff8cb2] rounded-md px-2 py-1 w-1/2"
-          />
-        </div>
-        <button
-          onClick={handleAddService}
-          className="bg-[#ff578f] text-white px-2 py-1 rounded-md mt-5"
-        >
-          Add Service
-        </button>
       </div>
-    </div>
+    </>
   );
 };
 
