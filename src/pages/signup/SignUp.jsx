@@ -106,7 +106,7 @@ const SignUp = () => {
         <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 text-gray-900">
           <div className="mb-8 text-center">
             <img
-              src="https://github.com/almahmudsarker/jerins-parlour/blob/main/src/assets/images/logo.png?raw=true"
+              src="https://i.ibb.co/dtvy93x/logo.png"
               className="mx-24 mb-4"
             />
             <h1 className="text-xl font-medium text-gray-400">

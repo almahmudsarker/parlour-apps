@@ -88,10 +88,7 @@ const Login = () => {
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col max-w-md p-6 rounded-md sm:p-1 text-gray-900">
           <div className="mb-8 text-center">
-            <img
-              src="https://github.com/almahmudsarker/jerins-parlour/blob/main/src/assets/images/logo.png?raw=true"
-              className="mx-24"
-            />
+            <img src="https://i.ibb.co/dtvy93x/logo.png" className="mx-20" />
             <h1 className="text-lg font-medium pt-2 text-gray-400">
               Login With
             </h1>

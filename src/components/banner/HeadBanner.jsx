@@ -27,8 +27,9 @@ const HeadBanner = () => {
                 FOR EVERY <span className="text-[#F63E7B]">WOMEN</span>
               </h1>
               <p className="text-left text-[#666666] w-[350px] h-[83px]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
-                commodo ipsum duis laoreet maecenas. Feugiat
+                Ranging from multiple methodologies of rejuvenating facials that
+                cater all skin types. Manicure, pedicure, threading are also
+                provided.
               </p>
               <button
                 onClick={appoinment}
