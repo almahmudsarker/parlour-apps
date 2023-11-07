@@ -3,11 +3,14 @@ import Avatar from "./Avatar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { FaOpencart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const MenuDropdown = () => {
   const { user, logOut, role, setRole } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
+  const [cart] = useCart();
 
   const closeModal = () => {
     setModal(false);
@@ -44,7 +47,10 @@ const MenuDropdown = () => {
               to="/"
               className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
             >
-              Our Team
+              <FaOpencart className="inline-block mr-2" />
+              <small className="bg-[#f86e9c] rounded-full text-white absolute px-1 top-[102px] right-15">
+                +{cart?.length || 0}
+              </small>
             </Link>
             <Link
               to="/"
