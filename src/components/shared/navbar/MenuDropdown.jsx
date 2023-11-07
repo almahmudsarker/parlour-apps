@@ -44,7 +44,7 @@ const MenuDropdown = () => {
               About
             </Link>
             <Link
-              to="/"
+              to="/dashboard/my-cart"
               className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
             >
               <FaOpencart className="inline-block mr-2" />

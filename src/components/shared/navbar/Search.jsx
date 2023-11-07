@@ -12,7 +12,10 @@ const Search = () => {
         <Link to="/" className="text-[#474747] text-semibold pr-4">
           About
         </Link>
-        <Link to="/" className="text-[#474747] text-semibold pr-4 ">
+        <Link
+          to="/dashboard/my-cart"
+          className="text-[#474747] text-semibold pr-4 "
+        >
           <div>
             <FaOpencart className="inline-block mr-2" />
             <small className="bg-[#f86e9c] rounded-full text-white absolute px-1 top-[40px] right-[908px]">

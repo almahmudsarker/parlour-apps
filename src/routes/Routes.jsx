@@ -15,6 +15,7 @@ import AddService from "../pages/Admin/AddService";
 import MakeAdmin from "../pages/Admin/MakeAdmin";
 import ManageService from "../pages/Admin/ManageService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
+import MyCart from "../pages/dashboard/MyCart";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/review",
         element: <Review />,
+      },
+      {
+        path: "/dashboard/my-cart",
+        element: <MyCart />,
       },
       {
         path: "/dashboard/my-booking",
