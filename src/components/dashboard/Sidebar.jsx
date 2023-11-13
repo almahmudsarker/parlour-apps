@@ -9,9 +9,11 @@ import { GoCodeReview } from "react-icons/go";
 import { BsClipboard2Data } from "react-icons/bs";
 import { GrChapterAdd, GrServices } from "react-icons/gr";
 import { GrUserAdmin } from "react-icons/gr";
+import { FaOpencart } from "react-icons/fa";
 
 import { AiOutlineBars } from "react-icons/ai";
 import { getRole } from "../../api/auth";
+import toast from "react-hot-toast";
 const Sidebar = () => {
   const navigate = useNavigate();
   const { logOut, user } = useContext(AuthContext);
@@ -127,7 +129,14 @@ const Sidebar = () => {
                   >
                     <TbShoppingCartHeart className="w-5 h-5 mr-4" />
                     <Link to="/">
-                      <span className="font-medium">Book</span>
+                      <span
+                        onMouseOver={() => {
+                          toast("Explore Our Services to Book!");
+                        }}
+                        className="font-medium"
+                      >
+                        Book
+                      </span>
                     </Link>
                   </NavLink>
                   <NavLink
@@ -141,6 +150,18 @@ const Sidebar = () => {
                     <BsClipboard2Data className="w-5 h-5 mr-4" />
 
                     <span className="font-medium">Booking list</span>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/my-cart"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                        isActive ? "text-[#F63E7B]" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FaOpencart className="w-5 h-5 mr-4" />
+
+                    <span className="font-medium">Product list</span>
                   </NavLink>
                   <NavLink
                     to="/dashboard/review"
