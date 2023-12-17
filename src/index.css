@@ -6,3 +6,7 @@
 body {
   background-color: #fff5f7;
 }
+
+.active-link:hover {
+  color: #f86e9c;
+}

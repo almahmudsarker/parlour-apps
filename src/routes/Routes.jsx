@@ -16,6 +16,8 @@ import MakeAdmin from "../pages/Admin/MakeAdmin";
 import ManageService from "../pages/Admin/ManageService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import MyCart from "../pages/dashboard/MyCart";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
   {
     path: "/login",

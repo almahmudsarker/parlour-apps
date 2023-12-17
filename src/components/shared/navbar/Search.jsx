@@ -1,31 +1,46 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { FaOpencart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import { NavLink } from "react-router-dom";
 const Search = () => {
   const [cart] = useCart();
   return (
     <div className="w-full md:w-auto py-2 cursor-pointer hidden md:block">
       <div className="flex flex-row items-center justify-between">
-        <Link to="/" className="text-[#474747] text-semibold pr-4">
-          Home
-        </Link>
-        <Link to="/" className="text-[#474747] text-semibold pr-4">
-          About
-        </Link>
-        <Link
-          to="/dashboard/my-cart"
-          className="text-[#474747] text-semibold pr-4 "
+        <NavLink
+          to="/"
+          exact
+          className="text-[#474747] text-semibold pr-4 active-link"
+          activeClassName="active-link"
         >
-          <div>
+          Home
+        </NavLink>
+        <NavLink
+          to="/about"
+          className="text-[#474747] text-semibold pr-4 active-link"
+          activeClassName="active-link"
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/dashboard/my-cart"
+          className="text-[#474747] text-semibold pr-4 active-link"
+          activeClassName="active-link"
+        >
+          <button>
             <FaOpencart className="inline-block mr-2" />
-            <small className="bg-[#f86e9c] rounded-full text-white absolute px-1 top-[40px] right-[908px]">
+            <small className="bg-[#f86e9c] rounded-full text-white px-1 ">
               +{cart?.length || 0}
             </small>
-          </div>
-        </Link>
-        <Link to="/" className="text-[#474747] text-semibold">
+          </button>
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className="text-[#474747] text-semibold active-link"
+          activeClassName="active-link"
+        >
           Contact Us
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
