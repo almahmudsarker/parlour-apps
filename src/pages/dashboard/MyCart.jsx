@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {
+  const [count, setCount] = useState(1);
+  const { user } = useContext(AuthContext);
   const [cart, refetch] = useCart();
 
   const handleDelete = (item) => {
@@ -22,6 +25,44 @@ const MyCart = () => {
           }
         });
     }
+  };
+
+  // handle purchase  button
+  const handlePurchase = () => {
+    // Check if the user is authenticated
+    if (!user) {
+      toast.error("Please log in to make a purchase.");
+      return;
+    }
+
+    // Prepare purchase data
+    const purchaseData = {
+      userEmail: user.email,
+      items: cart.map((item) => ({ productId: item._id, quantity: count })),
+      totalAmount: cart.reduce((total, item) => total + item.price, 0),
+    };
+
+    // Send the purchase request to the server
+    fetch(`${import.meta.env.VITE_API_URL}/purchase`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(purchaseData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Handle the response from the server, update UI as needed
+        // For example, you can show a success message, clear the cart, etc.
+        console.log(data);
+        toast.success("Purchase successful!");
+        setCount(1);
+        refetch();
+      })
+      .catch((error) => {
+        console.error("Error making purchase:", error);
+        toast.error("Error making purchase. Please try again.");
+      });
   };
   return (
     <div>
@@ -51,11 +92,24 @@ const MyCart = () => {
                 </div>
               </div>
               <div className="flex flex-row items-center gap-3">
-                <button className="bg-[#F86E9C] text-white rounded-full px-2 py-1">
+                <button
+                  onClick={() => {
+                    if (count > 0) {
+                      setCount(count - 1);
+                    } else {
+                      setCount(1);
+                      toast.error("Minimum quantity is 1");
+                    }
+                  }}
+                  className="bg-[#F86E9C] text-white rounded-full px-2 py-1"
+                >
                   -
                 </button>
-                <span className="text-[#0C0C0C]">1</span>
-                <button className="bg-[#F86E9C] text-white rounded-full px-2 py-1">
+                <span className="text-[#0C0C0C]">{count}</span>
+                <button
+                  onClick={() => setCount(count + 1)}
+                  className="bg-[#F86E9C] text-white rounded-full px-2 py-1"
+                >
                   +
                 </button>
                 <button
@@ -75,18 +129,16 @@ const MyCart = () => {
                 {cart?.reduce((a, b) => a + b.price, 0).toLocaleString("id-ID")}
               </h1>
             </div>
-            <button className="bg-[#F86E9C] text-white rounded-full px-2 py-1 w-full hover:shadow-md transition duration-400">
-              Proceed to Checkout
+            <button
+              onClick={handlePurchase}
+              className="bg-[#F86E9C] text-white rounded-full px-2 py-1 w-full hover:shadow-md transition duration-400"
+            >
+              Buy Now
             </button>
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center h-[70vh]">
-          {/* <img
-            src="/images/empty-cart.svg"
-            alt="empty-cart"
-            className="w-[50%] object-cover"
-          /> */}
           <svg
             enable-background="new 0 0 100 100"
             height="100px"
