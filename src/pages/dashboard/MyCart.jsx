@@ -4,9 +4,22 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {
-  const [count, setCount] = useState(1);
   const { user } = useContext(AuthContext);
   const [cart, refetch] = useCart();
+  const [itemQuantities, setItemQuantities] = useState({});
+  // const [count, setCount] = useState(1);
+
+  const updateQuantity = (itemId, newQuantity) => {
+    setItemQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: newQuantity,
+    }));
+  };
+
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * (itemQuantities[item._id] || 1),
+    0
+  );
 
   const handleDelete = (item) => {
     const confirmDelete = window.confirm(
@@ -24,46 +37,48 @@ const MyCart = () => {
             window.location.reload();
           }
         });
+
+      setItemQuantities((prevQuantities) => {
+        const updatedQuantities = { ...prevQuantities };
+        delete updatedQuantities[item._id];
+        return updatedQuantities;
+      });
     }
   };
 
-  // handle purchase  button
   const handlePurchase = () => {
-    // Check if the user is authenticated
     if (!user) {
       toast.error("Please log in to make a purchase.");
       return;
     }
 
-    // Prepare purchase data
-    const purchaseData = {
-      userEmail: user.email,
-      items: cart.map((item) => ({ productId: item._id, quantity: count })),
-      totalAmount: cart.reduce((total, item) => total + item.price, 0),
-    };
-
-    // Send the purchase request to the server
     fetch(`${import.meta.env.VITE_API_URL}/purchase`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(purchaseData),
+      body: JSON.stringify({
+        userEmail: user.email,
+        items: cart.map((item) => ({
+          productId: item._id,
+          quantity: itemQuantities[item._id] || 1,
+        })),
+        totalAmount: totalAmount,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        // Handle the response from the server, update UI as needed
-        // For example, you can show a success message, clear the cart, etc.
         console.log(data);
         toast.success("Purchase successful!");
-        setCount(1);
+        // setCount(1); // Assuming setCount is defined somewhere
         refetch();
       })
       .catch((error) => {
         console.error("Error making purchase:", error);
-        toast.error("Error making purchase. Please try again.");
+        toast.error("Error making a purchase. Please try again.");
       });
   };
+
   return (
     <div>
       <h1 className="text-2xl font-medium text-[#0C0C0C] bg-white p-5">
@@ -94,20 +109,23 @@ const MyCart = () => {
               <div className="flex flex-row items-center gap-3">
                 <button
                   onClick={() => {
-                    if (count > 0) {
-                      setCount(count - 1);
-                    } else {
-                      setCount(1);
-                      toast.error("Minimum quantity is 1");
-                    }
+                    const newQuantity = itemQuantities[item._id]
+                      ? itemQuantities[item._id] - 1
+                      : 1;
+                    updateQuantity(item._id, newQuantity);
                   }}
                   className="bg-[#F86E9C] text-white rounded-full px-2 py-1"
                 >
                   -
                 </button>
-                <span className="text-[#0C0C0C]">{count}</span>
+                <span className="text-[#0C0C0C]">
+                  {itemQuantities[item._id] || 1}
+                </span>
                 <button
-                  onClick={() => setCount(count + 1)}
+                  onClick={() => {
+                    const newQuantity = (itemQuantities[item._id] || 1) + 1;
+                    updateQuantity(item._id, newQuantity);
+                  }}
                   className="bg-[#F86E9C] text-white rounded-full px-2 py-1"
                 >
                   +
@@ -125,8 +143,7 @@ const MyCart = () => {
             <div className="flex flex-row items-center justify-between">
               <h1 className="text-lg font-semibold text-[#0C0C0C]">Total</h1>
               <h1 className="text-lg font-semibold text-[#0C0C0C]">
-                $
-                {cart?.reduce((a, b) => a + b.price, 0).toLocaleString("id-ID")}
+                ${totalAmount.toLocaleString("id-ID")}
               </h1>
             </div>
             <button
