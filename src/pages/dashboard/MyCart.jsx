@@ -150,7 +150,7 @@ const MyCart = () => {
               onClick={handlePurchase}
               className="bg-[#F86E9C] text-white rounded-full px-2 py-1 w-full hover:shadow-md transition duration-400"
             >
-              Buy Now
+              Proceed to Checkout
             </button>
           </div>
         </div>
