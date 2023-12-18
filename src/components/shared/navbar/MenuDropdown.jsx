@@ -38,7 +38,7 @@ const MenuDropdown = () => {
               Home
             </Link>
             <Link
-              to="/"
+              to="/about"
               className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
             >
               About
@@ -53,7 +53,7 @@ const MenuDropdown = () => {
               </small>
             </Link>
             <Link
-              to="/"
+              to="/contact"
               className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
             >
               Contact Us
