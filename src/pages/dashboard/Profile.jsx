@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+
   // Dummy information
-  const address = "123 Main Street, Cityville";
-  const country = "Countryland";
+  const address = "123 Main Street, Cherry Hill, NJ 08003";
+  const country = "Russia";
   const quotes = [
     "Live, laugh, love.",
     "Be yourself; everyone else is already taken.",
@@ -23,86 +23,69 @@ const Profile = () => {
       content: "Consectetur adipiscing elit...",
     },
   ];
+
   return (
-    <div>
-      <h1 className="text-2xl font-medium text-[#0C0C0C] bg-white p-5">
-        My Account
-      </h1>
-      {/* Branding & Profile Info */}
-      <div className="flex flex-col items-center mt-6 -mx-2">
-        <Link to="">
-          <img
-            className="object-cover w-24 h-24 mx-2 rounded-full"
-            src={user?.photoURL}
-            alt="avatar"
-            referrerPolicy="no-referrer"
-          />
-        </Link>
-        <Link to="">
-          <h4 className="mx-2 mt-2 font-medium text-gray-800">
-            {user?.displayName}
-          </h4>
-        </Link>
-        <Link to="">
-          <p className="mx-2 mt-1 text-sm font-medium text-gray-600">
-            {user?.email}
-          </p>
-        </Link>
-
-        {/* Additional User Information */}
-        <div className="mt-4">
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">User ID:</span> {user?.uid}
-          </p>
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Date of Birth:</span>{" "}
-            {user?.dob || "Not specified"}
-          </p>
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Location:</span>{" "}
-            {user?.location || "Not specified"}
-          </p>
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Address:</span> {address}
-          </p>
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Country:</span> {country}
-          </p>
+    <div className="flex justify-center items-center h-screen bg-[#F86E9C]">
+      <div className="rounded-lg shadow-xl bg-[#ffffff] text-[#565967] overflow-hidden max-w-4xl w-full">
+        {/* Profile Header */}
+        <div className="text-center p-8 border-b border-gray-400">
+          <h1 className="text-3xl font-bold">My Account</h1>
         </div>
 
-        {/* Quotes */}
-        <div className="mt-4">
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Favorite Quotes:</span>
-          </p>
-          <ul className="list-disc mx-6 text-sm text-gray-600">
-            {quotes.map((quote, index) => (
-              <li key={index}>{quote}</li>
-            ))}
-          </ul>
-        </div>
+        {/* Profile Content */}
+        <div className="flex">
+          {/* Profile Image and Info */}
+          <div className="w-1/2 flex flex-col items-center justify-center border-r border-gray-600">
+            <div className="w-28 h-28 sm:w-52 sm:h-52 relative">
+              <img
+                className="rounded-full border-4 border-white shadow-lg"
+                src={user?.photoURL}
+                alt="avatar"
+                // style={{ position: "relative", zIndex: 10 }}
+              />
+            </div>
+            <h3 className="text-xl font-semibold">{user?.displayName}</h3>
+            <p className="text-sm text-gray-400">{user?.email}</p>
+          </div>
 
-        {/* Blog Section */}
-        <div className="mt-4">
-          <p className="mx-2 text-sm text-gray-600">
-            <span className="font-medium">Latest Blog Posts:</span>
-          </p>
-          <ul className="mx-6 text-sm text-gray-600">
-            {blogPosts.map((post, index) => (
-              <li key={index} className="mb-2">
-                <strong>{post.title}</strong> - {post.date}
-                <p>{post.content}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* Additional Info */}
+          <div className="w-1/2 p-8">
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400">Address</h4>
+              <p className="text-lg">{address}</p>
+            </div>
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold text-gray-400">Country</h4>
+              <p className="text-lg">{country}</p>
+            </div>
 
-        {/* Add/Edit Profile Button */}
-        {/* <Link to="/edit-profile">
-          <button className="mt-4 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
-            Edit Profile
-          </button>
-        </Link> */}
+            {/* Quotes */}
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold text-gray-400">
+                Favorite Quotes
+              </h4>
+              {quotes.map((quote, index) => (
+                <p key={index} className="text-md mt-2 italic">
+                  "{quote}"
+                </p>
+              ))}
+            </div>
+
+            {/* Blog Posts */}
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold text-gray-400">
+                Latest Blog Posts
+              </h4>
+              {blogPosts.map((post, index) => (
+                <div key={index} className="mt-4">
+                  <h5 className="text-lg font-medium">{post.title}</h5>
+                  <p className="text-sm text-gray-500">{post.date}</p>
+                  <p className="text-md mt-1">{post.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
