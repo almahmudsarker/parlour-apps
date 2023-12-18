@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import toast from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 const Connection = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_b5girqt",
+      "template_n9frmgm",
+      form.current,
+      "3hCvHi6zoKDmGvlxs"
+    );
+    toast.success("Message send successfully!");
+    e.target.reset();
+  };
   return (
     <div className="bg-neutral py-10">
       <div className="md:w-5/12 px-4 md:px-0  mx-auto ">
@@ -9,44 +24,44 @@ const Connection = () => {
           Let us handle your project, professionally.
         </h1>
 
-        <div className=" mt-10">
+        <form ref={form} onSubmit={sendEmail} className=" mt-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               type="text"
+              name="Fname"
               placeholder="First Name"
               className="input w-full p-5 rounded"
             />
             <input
               type="text"
+              name="Lname"
               placeholder="Last Name"
               className="input w-full p-5 rounded"
             />
 
             <input
-              type="text"
+              type="email"
+              name="email"
               placeholder="Email Address"
               className="input w-full p-5 rounded"
             />
             <input
-              type="text"
+              type="number"
+              name="phone"
               placeholder="Phone Number"
               className="input w-full p-5 rounded"
             />
           </div>
 
           <textarea
+            name="message"
             className="textarea w-full pb-20 p-5 mt-6 rounded"
             placeholder="Your Message"
           ></textarea>
-          <button
-            onClick={() => {
-              toast.success("Message send successfully!");
-            }}
-            className="block mx-auto my-6 rounded p-3 hover:bg-[#ff4b87] transition duration-300 ease-in-out bg-[#F63E7B] text-white"
-          >
+          <button className="block mx-auto my-6 rounded p-3 hover:bg-[#ff4b87] transition duration-300 ease-in-out bg-[#F63E7B] text-white">
             Send Message
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
