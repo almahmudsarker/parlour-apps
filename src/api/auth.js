@@ -55,3 +55,35 @@ export const removeAdminRole = async (email) => {
   const data = await response.json();
   return data;
 };
+
+// Fetch users from the database
+export const getUsers = async () => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
+    const users = await response.json();
+    return users;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
+// Remove a user from the database
+export const removeUser = async (email) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/users/${email}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error removing user:", error);
+    throw error;
+  }
+};

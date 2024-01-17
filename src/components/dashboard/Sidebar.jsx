@@ -1,19 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { BsClipboard2Data } from "react-icons/bs";
+import { CgUserList } from "react-icons/cg";
+import { FaOpencart } from "react-icons/fa";
+import { GoCodeReview } from "react-icons/go";
+import { GrChapterAdd, GrServices, GrUserAdmin } from "react-icons/gr";
+import { IoIosLogOut } from "react-icons/io";
+import { TbShoppingCartHeart, TbUserHeart } from "react-icons/tb";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Logo from "../shared/navbar/Logo";
-import { IoIosLogOut } from "react-icons/io";
-import { TbUserHeart } from "react-icons/tb";
-import { TbShoppingCartHeart } from "react-icons/tb";
-import { GoCodeReview } from "react-icons/go";
-import { BsClipboard2Data } from "react-icons/bs";
-import { GrChapterAdd, GrServices } from "react-icons/gr";
-import { GrUserAdmin } from "react-icons/gr";
-import { FaOpencart } from "react-icons/fa";
 
+import toast from "react-hot-toast";
 import { AiOutlineBars } from "react-icons/ai";
 import { getRole } from "../../api/auth";
-import toast from "react-hot-toast";
 const Sidebar = () => {
   const navigate = useNavigate();
   const { logOut, user } = useContext(AuthContext);
@@ -93,6 +92,17 @@ const Sidebar = () => {
                   >
                     <GrChapterAdd className="w-5 h-5 mr-4" />
                     <span className="font-medium">Add Service</span>
+                  </NavLink>
+                  <NavLink
+                    to={`/dashboard/users-list`}
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2  transition-colors duration-300 transform hover:text-[#F63E7B] ${
+                        isActive ? "text-[#F63E7B]" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <CgUserList className="w-6 h-6 mr-4" />
+                    <span className="font-medium">Users List</span>
                   </NavLink>
                   <NavLink
                     to={`/dashboard/make-admin`}

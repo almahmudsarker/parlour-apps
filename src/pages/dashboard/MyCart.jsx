@@ -1,9 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import Modal from "react-modal";
 import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {
+  // Modal for purchase
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_f532pvz",
+      "template_ulbkj0k",
+      form.current,
+      "Lz7zf6YVrNzxWVPHD"
+    );
+    toast.success("Your bKash Payment Successful!");
+    // e.target.reset();
+  };
+
   const { user } = useContext(AuthContext);
   const [cart, refetch] = useCart();
   const [itemQuantities, setItemQuantities] = useState({});
@@ -69,7 +88,7 @@ const MyCart = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Purchase successful!");
+        // toast.success("Purchase successful!");
         // setCount(1); // Assuming setCount is defined somewhere
         refetch();
       })
@@ -143,15 +162,93 @@ const MyCart = () => {
             <div className="flex flex-row items-center justify-between">
               <h1 className="text-lg font-semibold text-[#0C0C0C]">Total</h1>
               <h1 className="text-lg font-semibold text-[#0C0C0C]">
-                ${totalAmount.toLocaleString("id-ID")}
+                Tk- {totalAmount.toLocaleString("id-ID")} ৳
               </h1>
             </div>
             <button
-              onClick={handlePurchase}
+              onClick={() => {
+                setIsModalOpen(true);
+                // handlePurchase(); // You can choose to call handlePurchase here if needed
+              }}
               className="bg-[#F86E9C] text-white rounded-full px-2 py-1 w-full hover:shadow-md transition duration-400"
             >
               Proceed to Checkout
             </button>
+
+            <Modal
+              isOpen={isModalOpen}
+              onRequestClose={() => setIsModalOpen(false)}
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
+                content: {
+                  top: "50%",
+                  left: "50%",
+                  right: "auto",
+                  bottom: "auto",
+                  marginRight: "-50%",
+                  transform: "translate(-50%, -50%)",
+                  border: "none",
+                  padding: 0,
+                },
+              }}
+            >
+              {/* Your bKash payment modal content goes here */}
+              <div className="bg-white p-8 rounded-sm">
+                <div>
+                  <h4 className="mx-[195px] text-lg font-thin text-[#6e6e6e] p-5">
+                    Pay With Your favourite Gateway System
+                  </h4>
+                  <img
+                    src="https://i.ibb.co/GJ1qhsR/05.png"
+                    alt=""
+                    className="w-20 h-20 mx-80"
+                  />
+                  <h4 className="mx-[270px] text-lg font-thin text-[#f86e9c] px-5 pb-2">
+                    +88013xxxx3823
+                  </h4>
+                </div>
+                {/* Add your bKash payment form or content here */}
+                <form ref={form} onSubmit={sendEmail}>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    className="border-1 border-gray-300 p-2 rounded-md w-1/2 m-4"
+                    value={user.displayName}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className="border-1 border-gray-300 p-2 rounded-md w-1/2 m-4"
+                    value={user.email}
+                  />
+                  <textarea
+                    name="message"
+                    className="textarea w-1/2 pb-0 p-5 m-4 rounded"
+                    placeholder="Bkash Transaction ID"
+                    required
+                  ></textarea>
+                  <br />
+                  <span className="text-gray-400 text-sm m-4">
+                    Your Total Payable Amount Will be Tk-{" "}
+                    {totalAmount.toLocaleString("id-ID")} ৳
+                  </span>
+                  <button className="bg-[#F86E9C] text-white rounded-full px-6 py-2 my-4 hover:shadow-md transition duration-400">
+                    <span
+                      onClick={() => {
+                        handlePurchase();
+                        setIsModalOpen(false);
+                      }}
+                    >
+                      Pay with bKash
+                    </span>
+                  </button>
+                </form>
+              </div>
+            </Modal>
           </div>
         </div>
       ) : (
