@@ -1,11 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { getService } from "../../api/services";
-import { AuthContext } from "../../providers/AuthProvider";
-import toast from "react-hot-toast";
 import useBooked from "../../hooks/useBooked";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Book = () => {
+  // Email.js
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_5jlcyby",
+      "template_wf7vxqg",
+      form.current,
+      "9rQkHmDlC06UCHQ6K"
+    );
+    toast.success("bKash Payment successful!");
+    // e.target.reset();
+  };
+
   const { id } = useParams();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -50,12 +66,13 @@ const Book = () => {
         .then((data) => {
           if (data.insertedId) {
             refetch();
-            toast.success("Booked Successfully");
+            // toast.success("Booked Successfully");
             navigate("/dashboard/my-booking");
           }
         });
     }
   };
+
   return (
     <div>
       <h1 className="text-2xl font-medium text-[#0C0C0C] bg-white p-5">
@@ -63,71 +80,54 @@ const Book = () => {
       </h1>
       <section>
         <div>
-          <input
-            type="text"
-            placeholder="Name"
-            className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
-            value={user.displayName}
-          />
-          <input
-            type="text"
-            placeholder="Email"
-            className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
-            value={user.email}
-          />
-          <input
-            type="text"
-            placeholder="Service Name"
-            className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
-            value={name}
-          />
           <div>
-            <h4 className="text-lg font-thin text-[#6e6e6e] p-5">Pay with</h4>
-            <div className="p-5 flex">
-              <input type="radio" name="payment" value="card" />
-              <img
-                src="https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/credit-card%201.png?raw=true"
-                alt=""
-                className="w-5 h-5 ml-2"
-              />
-              <label className="text-[#6e6e6e] px-2">Creadit Card</label>
-
-              <input type="radio" name="payment" value="paypal" />
-              <img
-                src="https://github.com/abirhasan33/jerin-parlour-client/blob/main/src/Assests/Images/Icon/image%2017.png?raw=true"
-                alt=""
-                className="w-5 h-5 ml-2"
-              />
-              <label className="text-[#6e6e6e] px-2">Paypal</label>
-            </div>
+            <h4 className="mx-[195px] text-lg font-thin text-[#6e6e6e] p-5">
+              Pay With Your favourite Gateway System
+            </h4>
+            <img
+              src="https://i.ibb.co/GJ1qhsR/05.png"
+              alt=""
+              className="w-20 h-20 mx-80"
+            />
+            <h4 className="mx-[270px] text-lg font-thin text-[#f86e9c] px-5 pb-2">
+              +88013xxxx3823
+            </h4>
           </div>
-          <input
-            type="text"
-            placeholder="Card Number"
-            className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
-          />
-          <div className="flex">
+          <form ref={form} onSubmit={sendEmail}>
             <input
               type="text"
-              placeholder="MM/YY"
-              className="border-2 border-gray-300 p-2 rounded-md w-3/12 my-4 ml-4"
+              name="service_name"
+              placeholder="Service Name"
+              className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
+              value={name}
             />
             <input
               type="text"
-              placeholder="CVC"
-              className="border-2 border-gray-300 p-2 rounded-md w-3/12 my-4"
+              name="name"
+              placeholder="Name"
+              className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
+              value={user.displayName}
             />
-          </div>
-          <br />
-          <span className="text-gray-400 text-sm m-4">
-            Your Service Charge will be ${price}
-          </span>
-          <button
-            onClick={handleAddToBook}
-            className="bg-[#f86e9c] hover:bg-[#F63E7B] text-white p-2 rounded-md m-4"
-          >
-            Pay Now
-          </button>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="border-2 border-gray-300 p-2 rounded-md w-1/2 m-4"
+              value={user.email}
+            />
+            <textarea
+              name="message"
+              className="textarea w-1/2 pb-0 p-5 m-4 rounded"
+              placeholder="Bkash Transaction ID"
+            ></textarea>
+            <br />
+            <span className="text-gray-400 text-sm m-4">
+              Your Service Charge will be ${price}
+            </span>
+            <button className="bg-[#f86e9c] hover:bg-[#F63E7B] text-white p-2 rounded-md m-4">
+              <span onClick={handleAddToBook}>Pay Now</span>
+            </button>
+          </form>
         </div>
       </section>
     </div>

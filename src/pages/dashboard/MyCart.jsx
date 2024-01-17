@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
+import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {

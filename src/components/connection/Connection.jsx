@@ -1,6 +1,6 @@
+import emailjs from "@emailjs/browser";
 import React, { useRef } from "react";
 import toast from "react-hot-toast";
-import emailjs from "@emailjs/browser";
 
 const Connection = () => {
   const form = useRef();

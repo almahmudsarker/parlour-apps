@@ -31,8 +31,8 @@ const MyBooking = () => {
                   </span>{" "}
                   ${item.price}
                 </p>
-                <button className="px-4 py-2 bg-[#c95179] text-white text-sm font-medium rounded-md">
-                  Pending...
+                <button className="px-4 py-2 bg-[#51c97b] text-white text-sm font-medium rounded-md">
+                  Recieved
                 </button>
               </div>
             </div>
