@@ -55,51 +55,25 @@ const SignUp = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    const image = event.target.image.files[0];
 
-    // Email regex pattern for basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Validate image extension
+    const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+    const imageExtension = image.name.split(".").pop().toLowerCase();
 
-    // Password regex patterns for various requirements
-    const passwordRegex = {
-      minLength: 8,
-      hasUpperCase: /[A-Z]/,
-      hasLowerCase: /[a-z]/,
-      hasDigit: /\d/,
-      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
-    };
-
-    // Validation checks
-    if (!name || !email || !password) {
-      toast.error("All fields are required");
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      toast.error("Invalid email address");
-      return;
-    }
-
-    if (
-      password.length < passwordRegex.minLength ||
-      !passwordRegex.hasUpperCase.test(password) ||
-      !passwordRegex.hasLowerCase.test(password) ||
-      !passwordRegex.hasDigit.test(password) ||
-      !passwordRegex.hasSpecialChar.test(password)
-    ) {
+    if (!allowedExtensions.includes(imageExtension)) {
       toast.error(
-        "Password must have at least 8 characters, including uppercase, lowercase, digit, and special character."
+        "Invalid image file type. Please upload a valid image (jpg, jpeg, png, gif)."
       );
       return;
     }
 
-    // Continue with sign-up if all validations pass
-    //image upload
-    const image = event.target.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_IMGBB_KEY
     }`;
+
     fetch(url, {
       method: "POST",
       body: formData,
@@ -133,7 +107,6 @@ const SignUp = () => {
         console.log(err.message);
         toast.error(err.message);
       });
-    return;
   };
 
   return (
@@ -162,6 +135,8 @@ const SignUp = () => {
                   Name
                 </label>
                 <input
+                  data-cy="error-name"
+                  data-cyp="name-input"
                   type="text"
                   name="name"
                   id="name"
@@ -187,6 +162,8 @@ const SignUp = () => {
                   Email address
                 </label>
                 <input
+                  data-cy="error-email"
+                  data-cyp="email-input"
                   type="email"
                   name="email"
                   id="email"
@@ -203,6 +180,8 @@ const SignUp = () => {
                   </label>
                 </div>
                 <input
+                  data-cy="error-password"
+                  data-cyp="password-input"
                   type="password"
                   name="password"
                   id="password"
@@ -215,6 +194,7 @@ const SignUp = () => {
 
             <div>
               <button
+                data-cy="submit"
                 type="submit"
                 className="bg-[#F63E7B] w-full rounded-md py-3 text-white"
               >
