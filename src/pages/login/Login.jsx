@@ -1,14 +1,13 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useRef } from "react";
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
-import { TbFidgetSpinner } from "react-icons/tb";
-import { useRef } from "react";
-import { saveUser } from "../../api/auth";
 import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { saveUser } from "../../api/auth";
 import Footer from "../../components/shared/Footer/Footer";
 import Navbar from "../../components/shared/navbar/Navbar";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const {
@@ -54,8 +53,47 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const email = event.target.email.value;
     const password = event.target.password.value;
+
+    // Email regex pattern for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Password regex patterns for various requirements
+    const passwordRegex = {
+      minLength: 8,
+      hasUpperCase: /[A-Z]/,
+      hasLowerCase: /[a-z]/,
+      hasDigit: /\d/,
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+    };
+
+    // Validation checks
+    if (!email || !password) {
+      toast.error("Email and password are required");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    if (
+      password.length < passwordRegex.minLength ||
+      !passwordRegex.hasUpperCase.test(password) ||
+      !passwordRegex.hasLowerCase.test(password) ||
+      !passwordRegex.hasDigit.test(password) ||
+      !passwordRegex.hasSpecialChar.test(password)
+    ) {
+      toast.error(
+        "Password must have at least 8 characters, including uppercase, lowercase, digit, and special character."
+      );
+      return;
+    }
+
+    // Continue with sign-in if all validations pass
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
@@ -82,6 +120,7 @@ const Login = () => {
         toast.error(err.message);
       });
   };
+
   return (
     <>
       <Navbar />

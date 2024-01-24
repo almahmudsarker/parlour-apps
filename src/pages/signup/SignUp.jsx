@@ -1,14 +1,13 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
-import { TbFidgetSpinner } from "react-icons/tb";
+import toast from "react-hot-toast";
 import { FaFacebook } from "react-icons/fa";
-// import { useRef } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { saveUser } from "../../api/auth";
-import Navbar from "../../components/shared/navbar/Navbar";
 import Footer from "../../components/shared/Footer/Footer";
+import Navbar from "../../components/shared/navbar/Navbar";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -56,6 +55,44 @@ const SignUp = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+
+    // Email regex pattern for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Password regex patterns for various requirements
+    const passwordRegex = {
+      minLength: 8,
+      hasUpperCase: /[A-Z]/,
+      hasLowerCase: /[a-z]/,
+      hasDigit: /\d/,
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+    };
+
+    // Validation checks
+    if (!name || !email || !password) {
+      toast.error("All fields are required");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    if (
+      password.length < passwordRegex.minLength ||
+      !passwordRegex.hasUpperCase.test(password) ||
+      !passwordRegex.hasLowerCase.test(password) ||
+      !passwordRegex.hasDigit.test(password) ||
+      !passwordRegex.hasSpecialChar.test(password)
+    ) {
+      toast.error(
+        "Password must have at least 8 characters, including uppercase, lowercase, digit, and special character."
+      );
+      return;
+    }
+
+    // Continue with sign-up if all validations pass
     //image upload
     const image = event.target.image.files[0];
     const formData = new FormData();
