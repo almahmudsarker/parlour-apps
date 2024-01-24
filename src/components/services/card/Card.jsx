@@ -11,7 +11,7 @@ const Card = ({ service }) => {
           {service.name}
         </h2>
         <h2 className="card-title text-[#F63E7B] font-bold">
-          ${service.price}
+          Tk- {service.price} ৳
         </h2>
         <p className="px-10 py-3 text-[#666666]">{service.description}</p>
       </div>

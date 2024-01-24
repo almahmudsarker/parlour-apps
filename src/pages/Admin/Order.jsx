@@ -1,4 +1,3 @@
-import { set } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { getOrderList } from "../../api/bookings";
 
@@ -42,7 +41,7 @@ const Order = () => {
                 <td className="border px-4 py-2">{order.bookedItemId}</td>
                 <td className="border px-4 py-2">{order.email}</td>
                 <td className="border px-4 py-2">{order.name}</td>
-                <td className="border px-4 py-2">$ {order.price}</td>
+                <td className="border px-4 py-2">Tk- {order.price} ৳</td>
                 <td className="border px-4 py-2">{order._id}</td>
                 <td className="border px-4 py-2">{order.status}</td>
               </tr>

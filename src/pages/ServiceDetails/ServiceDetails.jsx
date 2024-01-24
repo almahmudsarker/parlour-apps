@@ -29,7 +29,7 @@ const ServiceDetails = () => {
             <h2 className="text-2xl font-semibold text-accent">{name}</h2>
             <img className="w-32" src={img} alt="" />
             <p className="text-center">{description}</p>
-            <p className="text-primary text-xl font-bold">${price}</p>
+            <p className="text-primary text-xl font-bold">Tk- {price} ৳</p>
             <button
               onClick={() => navigate(`/dashboard/payment/${id}`)}
               className="px-5 font-semibold rounded py-2  bg-[#F63E7B] text-white"

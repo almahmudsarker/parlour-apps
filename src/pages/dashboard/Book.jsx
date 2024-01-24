@@ -122,7 +122,7 @@ const Book = () => {
             ></textarea>
             <br />
             <span className="text-gray-400 text-sm m-4">
-              Your Service Charge will be ${price}
+              Your Service Charge will be Tk- {price} ৳
             </span>
             <button className="bg-[#f86e9c] hover:bg-[#F63E7B] text-white p-2 rounded-md m-4">
               <span onClick={handleAddToBook}>Pay Now</span>

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { FaOpencart } from "react-icons/fa";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const ProductCard = ({ product }) => {
   const { _id, name, description, price, imageUrl } = product;
@@ -57,7 +57,9 @@ const ProductCard = ({ product }) => {
           </h2>
           <p className="text-sm text-gray-600">{product.description}</p>
           <div className="mt-4 flex justify-between items-center">
-            <p className="text-xl font-bold text-[#F63E7B]">${product.price}</p>
+            <p className="text-xl font-bold text-[#F63E7B]">
+              Tk- {product.price} ৳
+            </p>
             <button
               className="px-3 py-1 text-sm text-white bg-[#F63E7B] rounded-md"
               onClick={() => {

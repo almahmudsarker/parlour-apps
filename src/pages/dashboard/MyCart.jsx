@@ -88,7 +88,7 @@ const MyCart = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // toast.success("Purchase successful!");
+        toast.success("Purchase successful!");
         // setCount(1); // Assuming setCount is defined somewhere
         refetch();
       })
@@ -121,7 +121,7 @@ const MyCart = () => {
                     {item.name}
                   </h1>
                   <p className="text-sm text-[#0C0C0C]">
-                    ${item.price.toLocaleString("id-ID")}
+                    Tk- {item.price.toLocaleString("id-ID")} ৳
                   </p>
                 </div>
               </div>

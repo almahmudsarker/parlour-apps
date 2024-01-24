@@ -29,7 +29,7 @@ const MyBooking = () => {
                   <span className="text-lg font-semibold text-[#f63e7bc7]">
                     PAID -
                   </span>{" "}
-                  ${item.price}
+                  Tk- {item.price} ৳
                 </p>
                 <button className="px-4 py-2 bg-[#51c97b] text-white text-sm font-medium rounded-md">
                   Recieved
