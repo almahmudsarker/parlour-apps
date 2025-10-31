@@ -1,0 +1,36 @@
+name: E2E
+
+on:
+  pull_request:
+  push:
+    branches: [dev, main]
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      # build if needed for local preview; adjust if you run e2e against deployed preview
+      - run: npm run build --if-present
+      # start local server if your e2e expects localhost (adjust script to your dev server)
+      - run: |
+          nohup npm run dev &
+          sleep 5
+      - name: Run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          wait-on: 'http://localhost:5173'
+      - name: Upload Cypress artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/videos/**
+            cypress/screenshots/**
