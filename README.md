@@ -1,3 +1,10 @@
+[![CI](https://github.com/almahmudsarker/parlour-apps/actions/workflows/ci.yml/badge.svg)](../../actions)
+[![E2E](https://github.com/almahmudsarker/parlour-apps/actions/workflows/e2e.yml/badge.svg)](../../actions)
+**Quick Links**  
+- 🚧 [Project Board](https://github.com/users/almahmudsarker/projects)  
+- 🗂 [Issues](../../issues) · 🎯 [Milestones](../../milestones)  
+- 📚 [Wiki](../../wiki) · 🤝 [Contributing](./CONTRIBUTING.md)
+
 ![Alt text](https://i.ibb.co/dtvy93x/logo.png)
 
 # Glamour Haven Parlour Website
